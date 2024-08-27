@@ -8,13 +8,13 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      body: body(),
       backgroundColor: const Color(0xff0a0c16),
+      body: body(),
     );
   }
 
   Column body(){
-    return Column(
+    return const Column(
       children: [
 
       ],
