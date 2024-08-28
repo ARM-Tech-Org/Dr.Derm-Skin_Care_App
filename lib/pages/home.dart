@@ -33,11 +33,8 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 125,
-                    decoration: const BoxDecoration(
-                      // color: Colors.white,
-                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(17.0),
                       child: SvgPicture.asset(features[index].imageUrl,),
@@ -47,7 +44,7 @@ class HomePage extends StatelessWidget {
                     width: 170,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 70,
@@ -77,21 +74,26 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          height: 30,
-                          width: 30,
-                          padding: const EdgeInsets.all(3),
-                          decoration: const BoxDecoration(
-                            color: Color(0xff0a0c16),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomRight: Radius.circular(19),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 30,
+                              padding: const EdgeInsets.all(3),
+                              decoration: const BoxDecoration(
+                                color: Color(0xff0a0c16),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(19),
+                                ),
+                              ),
+                              child: SvgPicture.asset(
+                                'assets/icons/double-arrow-right.svg',
+                                colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                              ),
                             ),
-                          ),
-                          child: SvgPicture.asset(
-                            'assets/icons/double-arrow-right.svg',
-                            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                          ),
+                          ],
                         ),
                       ],
                     ),

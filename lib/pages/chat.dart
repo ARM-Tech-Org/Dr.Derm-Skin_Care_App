@@ -19,7 +19,7 @@ class ChatPage extends StatelessWidget {
         'Chat with Dr. Derm',
         style: TextStyle(
           color: Colors.white,
-          fontSize: 18,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),
