@@ -8,7 +8,7 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Color(0xff0a0c16),
+      backgroundColor: const Color(0xff0a0c16),
     );
   }
 
@@ -37,7 +37,8 @@ class ChatPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: Colors.transparent,
           ),
-          child: SvgPicture.asset('assets/icons/double-arrow-left.svg',
+          child: SvgPicture.asset(
+            'assets/icons/double-arrow-left.svg',
             colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
           ),
         ),

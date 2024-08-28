@@ -6,7 +6,6 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: appBar(),
       backgroundColor: const Color(0xff0a0c16),
       body: body(),
     );
@@ -25,7 +24,8 @@ class WelcomePage extends StatelessWidget {
           child: const Text(
             'Let’s \nDiscover \nDr. Derm',
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 32,
+            style: TextStyle(
+                fontSize: 32,
                 color: Color(0xffffffff),
                 fontFamily: 'Poppins-Bold',
                 fontWeight: FontWeight.bold),
@@ -37,7 +37,8 @@ class WelcomePage extends StatelessWidget {
           child: const Text(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.ore eu fugiat nulla pariatur. ',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 12,
+            style: TextStyle(
+                fontSize: 12,
                 color: Color(0xffffffff),
                 fontFamily: 'Poppins-Medium',
                 fontWeight: FontWeight.normal),
@@ -63,7 +64,8 @@ class WelcomePage extends StatelessWidget {
                     Text(
                       'Get Started',
                       textAlign: TextAlign.center,
-                      style: TextStyle(decoration: TextDecoration.none,
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
                           fontSize: 16,
                           color: Color(0xfffcfcfc),
                           fontFamily: 'Quicksand-SemiBold',
