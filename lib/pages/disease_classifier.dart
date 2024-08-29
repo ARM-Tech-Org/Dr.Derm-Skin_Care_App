@@ -1,9 +1,20 @@
+import 'dart:io';
+
 import 'package:dr_derm_frontend/pages/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
-class DiseaseClassifierPage extends StatelessWidget {
+
+class DiseaseClassifierPage extends StatefulWidget {
   const DiseaseClassifierPage({super.key});
+
+  @override
+  State<DiseaseClassifierPage> createState() => _DiseaseClassifierPageState();
+}
+
+class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
+  File ? _selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +89,10 @@ class DiseaseClassifierPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          GestureDetector(
-            onTap: () {},
+          InkWell(
+            onTap: () {
+              _pickImageFromGallery();
+            },
             child: Container(
               height: 40,
               decoration: BoxDecoration(
@@ -103,6 +116,16 @@ class DiseaseClassifierPage extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Container(
+            height: 70,
+            color: Colors.red,
+            child: Row(
+              children: [
+                _selectedImage != null ? const Text('data')/*Image.file(_selectedImage!)*/ : const Text('Please select an Image text')
+              ],
+            ),
+
           ),
         ],
       ),
@@ -146,4 +169,18 @@ class DiseaseClassifierPage extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _pickImageFromGallery() async {
+    var uploadedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (uploadedImage != null) {
+        _selectedImage = File(uploadedImage.path);
+      }
+    });
+  }
+}
+
+extension on ImagePicker {
+  getImage({required ImageSource source}) {}
 }

@@ -2,6 +2,7 @@ import 'package:dr_derm_frontend/pages/beauty_face.dart';
 import 'package:dr_derm_frontend/pages/disease_classifier.dart';
 import 'package:dr_derm_frontend/pages/home.dart';
 import 'package:dr_derm_frontend/pages/login.dart';
+import 'package:dr_derm_frontend/pages/upload.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -18,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomePage(),
     const BeautyFacePage(),
     const DiseaseClassifierPage(),
-    Container(),
+    UploadPage(),
     const WelcomePage(),
   ];
 
