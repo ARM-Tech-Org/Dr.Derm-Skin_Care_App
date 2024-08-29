@@ -1,6 +1,4 @@
-import 'package:dr_derm_frontend/pages/disease_classifier.dart';
-import 'package:dr_derm_frontend/pages/welcome.dart';
-import 'package:dr_derm_frontend/pages/home.dart';
+import 'package:dr_derm_frontend/pages/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,14 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: WelcomePage(),
-      // home: HomePage(),
-      home: DiseaseClassifierPage(),
+      home: BottomNavBar(),
     );
   }
 }

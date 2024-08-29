@@ -12,7 +12,6 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-
   AppBar appBar(){
     return AppBar(
       title: const Text(

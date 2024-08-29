@@ -2,8 +2,8 @@ import 'package:dr_derm_frontend/pages/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class DiseaseClassifierPage extends StatelessWidget {
-  const DiseaseClassifierPage({super.key});
+class BeautyFacePage extends StatelessWidget {
+  const BeautyFacePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,14 @@ class DiseaseClassifierPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: SvgPicture.asset(
-                      'assets/images/disease-classifier-logo.svg',
+                      'assets/images/beauty-face-logo.svg',
                     ),
                   ),
                 ),
                 const SizedBox(
                   width: 160,
                   child: Text(
-                    'Disease Classifier is an advanced AI-driven feature designed to assess your skin\'s health by scanning for potential issues and providing medical recommendations.',
+                    'Beauty Face is an innovative AI-powered feature designed to enhance your natural beauty and uses advanced facial recognition technology to analyze your skin.',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Quicksand',
@@ -67,7 +67,7 @@ class DiseaseClassifierPage extends StatelessWidget {
             height: 15,
           ),
           const Text(
-            '1. Select the Area to Scan: Choose the specific area of your skin you want to scan (e.g., face, arm, leg).\n2. Ensure Good Lighting: Make sure you\'re in a well-lit environment to ensure a clear scan.\n3. Position the Camera: Hold your device\'s camera about 6-12 inches away from the skin area you want to scan.\n4. Focus and Steady: Keep the camera steady and ensure the skin area is fully in focus.\n5. Start Scanning: Tap the "Scan disease" button to begin the scan. Follow any on-screen prompts to adjust your position if necessary.',
+            '1. Position Your Face: Hold your device at eye level, about 12-18 inches away, ensuring your entire face is visible on the screen.\n2. Good Lighting: Make sure you\'re in a well-lit environment for the best scan results.\n3. Stay Still: Keep your face steady and avoid any movement during the scan.\n4. Start Scanning: Tap the "Scan Face" button to begin the scan. Follow any on-screen prompts to adjust your position if necessary.',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'Quicksand',
@@ -112,7 +112,7 @@ class DiseaseClassifierPage extends StatelessWidget {
   AppBar appBar(context) {
     return AppBar(
       title: const Text(
-        'Disease Classifier',
+        'Beauty Face',
         style: TextStyle(
           color: Colors.white,
           fontFamily: 'Poppins',

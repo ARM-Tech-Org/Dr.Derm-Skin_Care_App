@@ -27,8 +27,8 @@ class WelcomePage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 32,
                 color: Color(0xffffffff),
-                fontFamily: 'Poppins-Bold',
-                fontWeight: FontWeight.bold),
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700),
           ),
         ),
         Container(
@@ -40,8 +40,8 @@ class WelcomePage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 12,
                 color: Color(0xffffffff),
-                fontFamily: 'Poppins-Medium',
-                fontWeight: FontWeight.normal),
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500),
           ),
         ),
         SizedBox(
@@ -68,7 +68,7 @@ class WelcomePage extends StatelessWidget {
                           decoration: TextDecoration.none,
                           fontSize: 16,
                           color: Color(0xfffcfcfc),
-                          fontFamily: 'Quicksand-SemiBold',
+                          fontFamily: 'Quicksand',
                           fontWeight: FontWeight.w600),
                     ),
                   ],
