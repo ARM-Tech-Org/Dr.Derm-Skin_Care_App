@@ -1,9 +1,9 @@
 import 'package:dr_derm_frontend/pages/beauty_face.dart';
 import 'package:dr_derm_frontend/pages/disease_classifier.dart';
 import 'package:dr_derm_frontend/pages/home.dart';
-import 'package:dr_derm_frontend/pages/login.dart';
-import 'package:dr_derm_frontend/pages/upload.dart';
+import 'package:dr_derm_frontend/pages/welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -19,48 +19,97 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomePage(),
     const BeautyFacePage(),
     const DiseaseClassifierPage(),
-    UploadPage(),
+    // UploadPage(),
     const WelcomePage(),
+    Container(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 5.0,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: const Color(0xff8f97ff),
-        unselectedItemColor: const Color(0xfffcfcfc),
-        backgroundColor: const Color(0xff31428f),
-        onTap: (int index) {
+      bottomNavigationBar: gNav(),
+    );
+  }
+
+  BottomNavigationBar defaultNav(){
+    return BottomNavigationBar(
+      elevation: 5.0,
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _selectedIndex,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      selectedItemColor: const Color(0xff8f97ff),
+      unselectedItemColor: const Color(0xfffcfcfc),
+      backgroundColor: const Color(0xff31428f),
+      onTap: (int index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      items: const [
+        BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home'
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.face),
+            label: 'Beauty Face'
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.scanner),
+            label: 'Disease Classifier'
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.lightbulb),
+            label: 'Health Tips'
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings'
+        ),
+      ],
+    );
+  }
+
+  Container gNav(){
+    return Container(
+      color: const Color(0xff0a0c16),
+      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 25),
+      child: GNav(
+        selectedIndex: _selectedIndex,
+        onTabChange: (int index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home'
+        backgroundColor: const Color(0xff262d52),
+        color: Colors.white,
+        activeColor: Colors.white,
+        tabBackgroundColor: const Color(0xff2684fc),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+        tabBorderRadius: 30,
+        gap: 8,
+        tabs: const [
+          GButton(
+            icon: Icons.home,
+            text: '',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.face),
-              label: 'Beauty Face'
+          GButton(
+            icon: Icons.face,
+            text: '',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.scanner),
-              label: 'Disease Classifier'
+          GButton(
+            icon: Icons.scanner,
+            text: '',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.lightbulb),
-              label: 'Health Tips'
+          GButton(
+            icon: Icons.lightbulb,
+            text: '',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings'
+          GButton(
+            icon: Icons.settings,
+            text: '',
           ),
         ],
       ),

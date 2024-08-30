@@ -1,4 +1,5 @@
 import 'package:dr_derm_frontend/pages/bottom_nav.dart';
+import 'package:dr_derm_frontend/pages/welcome.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavBar(),
+      home: WelcomePage(),
+      // home: BottomNavBar(),
     );
   }
 }
