@@ -1,6 +1,7 @@
 import 'package:dr_derm_frontend/models/feature_model.dart';
 import 'package:dr_derm_frontend/pages/beauty_face.dart';
 import 'package:dr_derm_frontend/pages/disease_classifier.dart';
+import 'package:dr_derm_frontend/pages/health_tips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   var featurePages = [
     const BeautyFacePage(),
     const DiseaseClassifierPage(),
-    Container()
+    const HealthTipsPage()
   ];
 
   /*var featurePages = [

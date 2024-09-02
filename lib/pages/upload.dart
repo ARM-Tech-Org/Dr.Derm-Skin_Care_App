@@ -9,7 +9,9 @@ class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
 
   @override
-  _UploadPageState createState() => _UploadPageState();
+  _UploadPageState createState() {
+    return _UploadPageState();
+  }
 }
 
 class _UploadPageState extends State<UploadPage> {

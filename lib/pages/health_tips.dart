@@ -1,8 +1,8 @@
 import 'package:dr_derm_frontend/models/health_tip_model.dart';
+import 'package:dr_derm_frontend/components/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'bottom_nav.dart';
 
 class HealthTipsPage extends StatefulWidget {
   const HealthTipsPage({super.key});

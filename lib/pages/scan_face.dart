@@ -1,20 +1,18 @@
 import 'dart:io';
 
-import 'package:dr_derm_frontend/components/bottom_nav.dart';
-import 'package:dr_derm_frontend/pages/scan_disease.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
 
-class DiseaseClassifierPage extends StatefulWidget {
-  const DiseaseClassifierPage({super.key});
+class ScanFacePage extends StatefulWidget {
+  const ScanFacePage({super.key});
 
   @override
-  State<DiseaseClassifierPage> createState() => _DiseaseClassifierPageState();
+  State<ScanFacePage> createState() => _ScanFacePageState();
 }
 
-class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
+class _ScanFacePageState extends State<ScanFacePage> {
   File ? _selectedImage;
 
   @override
@@ -29,76 +27,26 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
   Container body() {
     return Container(
       padding: const EdgeInsets.only(left: 25, right: 25),
+      // color: Colors.amber,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 160,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 130,
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: SvgPicture.asset(
-                      'assets/images/disease-classifier-logo.svg',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 160,
-                  child: Text(
-                    'Disease Classifier is an advanced AI-driven feature designed to assess your skin\'s health by scanning for potential issues and providing medical recommendations.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Quicksand',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ],
+          Container(
+            height: 490,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: const Color(0xff2e3859),
             ),
+            child: const Row(),
           ),
           Container(
-            height: 10,
-          ),
-          const Text(
-            'Instructions',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Quicksand',
-              fontWeight: FontWeight.w700,
-              fontSize: 12,
-            ),
-          ),
-          Container(
-            height: 15,
-          ),
-          const Text(
-            '1. Select the Area to Scan: Choose the specific area of your skin you want to scan (e.g., face, arm, leg).\n2. Ensure Good Lighting: Make sure you\'re in a well-lit environment to ensure a clear scan.\n3. Position the Camera: Hold your device\'s camera about 6-12 inches away from the skin area you want to scan.\n4. Focus and Steady: Keep the camera steady and ensure the skin area is fully in focus.\n5. Start Scanning: Tap the "Scan disease" button to begin the scan. Follow any on-screen prompts to adjust your position if necessary.',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Quicksand',
-              fontWeight: FontWeight.w500,
-              fontSize: 12,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
+            height: 20,
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ScanDiseasePage(),
-                ),
-              );
-              _pickImageFromGallery();
+              // Navigator.pop(context);
+              // _pickImageFromGallery();
             },
             child: Container(
               height: 40,
@@ -111,7 +59,7 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Upload Image',
+                    'Scan Face',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         decoration: TextDecoration.none,
@@ -124,7 +72,7 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
               ),
             ),
           ),
-    /*Container(
+          SizedBox(
             height: 70,
             // color: Colors.red,
             child: Row(
@@ -133,7 +81,7 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
               ],
             ),
 
-          ),*/
+          ),
         ],
       ),
     );
@@ -142,7 +90,7 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
   AppBar appBar(context) {
     return AppBar(
       title: const Text(
-        'Disease Classifier',
+        'Scan Face',
         style: TextStyle(
           color: Colors.white,
           fontFamily: 'Poppins',
@@ -157,10 +105,6 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
       leading: InkWell(
         onTap: () {
           Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context)=> const BottomNavBar())
-          );
         },
         child: Container(
           margin: const EdgeInsets.only(left: 35),

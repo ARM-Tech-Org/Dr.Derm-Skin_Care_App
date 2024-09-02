@@ -1,4 +1,4 @@
-import 'package:dr_derm_frontend/pages/bottom_nav.dart';
+import 'package:dr_derm_frontend/components/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {

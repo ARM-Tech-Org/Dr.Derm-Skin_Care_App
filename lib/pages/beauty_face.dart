@@ -1,20 +1,26 @@
-import 'package:dr_derm_frontend/pages/bottom_nav.dart';
+import 'package:dr_derm_frontend/components/bottom_nav.dart';
+import 'package:dr_derm_frontend/pages/scan_face.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class BeautyFacePage extends StatelessWidget {
+class BeautyFacePage extends StatefulWidget {
   const BeautyFacePage({super.key});
 
+  @override
+  State<BeautyFacePage> createState() => _BeautyFacePageState();
+}
+
+class _BeautyFacePageState extends State<BeautyFacePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
       backgroundColor: const Color(0xff0a0c16),
-      body: body(),
+      body: body(context),
     );
   }
 
-  Container body() {
+  Container body(context) {
     return Container(
       padding: const EdgeInsets.only(left: 25, right: 25),
       child: Column(
@@ -78,8 +84,13 @@ class BeautyFacePage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          GestureDetector(
-            onTap: () {},
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ScanFacePage())
+              );
+            },
             child: Container(
               height: 40,
               decoration: BoxDecoration(
