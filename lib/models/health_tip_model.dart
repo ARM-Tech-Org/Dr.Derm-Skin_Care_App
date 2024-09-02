@@ -163,7 +163,7 @@ class HealthTipModel {
         title: 'Use Retinoids Wisely',
         description: 'Incorporate retinoids gradually to boost skin cell turnover.',
         article: 'Retinoids are powerful skincare ingredients that can improve skin texture, reduce fine lines, and prevent breakouts. However, they can also cause dryness and irritation if not used correctly. Start by using a retinoid product once or twice a week, gradually increasing frequency as your skin adjusts. Always apply retinoids at night and follow up with sunscreen during the day, as they can make your skin more sensitive to the sun.',
-        imageUrl: 'assets/images/healthy-tips-logo.svg',
+        imageUrl: 'assets/images/health-tips-logo.svg',
         boxColor: const Color(0xff36c4c6),
       ),
     );

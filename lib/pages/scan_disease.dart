@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:dr_derm_frontend/pages/bottom_nav.dart';
-import 'package:dr_derm_frontend/pages/disease_classifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -40,7 +38,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
               borderRadius: BorderRadius.circular(20),
               color: const Color(0xff2e3859),
             ),
-            child: Row(),
+            child: const Row(),
           ),
           Container(
             height: 20,
@@ -74,7 +72,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 70,
             // color: Colors.red,
             child: Row(
@@ -107,10 +105,6 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       leading: InkWell(
         onTap: () {
           Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context)=> const DiseaseClassifierPage())
-          );
         },
         child: Container(
           margin: const EdgeInsets.only(left: 35),

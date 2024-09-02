@@ -1,5 +1,6 @@
 import 'package:dr_derm_frontend/pages/beauty_face.dart';
 import 'package:dr_derm_frontend/pages/disease_classifier.dart';
+import 'package:dr_derm_frontend/pages/health_tips.dart';
 import 'package:dr_derm_frontend/pages/home.dart';
 import 'package:dr_derm_frontend/pages/welcome.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomePage(),
     const BeautyFacePage(),
     const DiseaseClassifierPage(),
-    // UploadPage(),
+    const HealthTipsPage(),
     const WelcomePage(),
-    Container(),
   ];
 
   @override
