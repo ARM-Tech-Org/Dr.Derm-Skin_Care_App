@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class ScanDiseasePage extends StatefulWidget {
   const ScanDiseasePage({super.key});
 
@@ -13,10 +12,36 @@ class ScanDiseasePage extends StatefulWidget {
 }
 
 class _ScanDiseasePageState extends State<ScanDiseasePage> {
-  File ? _selectedImage;
+  File? _selectedImage;
+  final picker = ImagePicker();
+
+  Future _pickImageFromGallery() async {
+    final pickedImage = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
+
+    setState(() {
+      if (pickedImage != null) {
+        _selectedImage = File(pickedImage.path);
+        // widget.imgUrl = null;
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+
+    _pickImageFromGallery();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // _pickImageFromGallery();
+
     return Scaffold(
       appBar: appBar(context),
       backgroundColor: const Color(0xff0a0c16),
@@ -34,18 +59,35 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
         children: [
           Container(
             height: 490,
+            width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff2e3859),
+              color: _selectedImage != null
+                ? const Color(0xff2e2e2e)
+                : const Color(0xff2e3859),
+              /*border: Border.all(
+                color: Colors.white,
+                width: 2,
+              ),*/
             ),
-            child: const Row(),
+            child: _selectedImage != null
+                ? Image.file(
+                    _selectedImage!.absolute,
+                    fit: BoxFit.contain,
+                  )
+                : const Center(
+                    child: Icon(
+                      Icons.add_photo_alternate_outlined,
+                      size: 60,
+                      color: Colors.white,
+                    ),
+                  ),
           ),
           Container(
             height: 20,
           ),
           InkWell(
             onTap: () {
-              // Navigator.pop(context);
               // _pickImageFromGallery();
             },
             child: Container(
@@ -71,16 +113,6 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
                 ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 70,
-            // color: Colors.red,
-            child: Row(
-              children: [
-                _selectedImage != null ? const Text('data')/*Image.file(_selectedImage!)*/ : const Text('Please select an Image text')
-              ],
-            ),
-
           ),
         ],
       ),
@@ -120,18 +152,9 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       ),
     );
   }
-
-  Future<void> _pickImageFromGallery() async {
-    var uploadedImage = await ImagePicker().getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (uploadedImage != null) {
-        _selectedImage = File(uploadedImage.path);
-      }
-    });
-  }
 }
 
+/*
 extension on ImagePicker {
   getImage({required ImageSource source}) {}
-}
+}*/
