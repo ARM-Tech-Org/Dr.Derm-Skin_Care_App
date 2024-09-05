@@ -31,17 +31,111 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
     });
   }
 
+  Future _pickImageFromCamera() async {
+    final pickedImage = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 50,
+    );
+
+    setState(() {
+      if (pickedImage != null) {
+        _selectedImage = File(pickedImage.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future _showBottomSheet(BuildContext context) async{
+    return showModalBottomSheet(
+      context: context,
+      isDismissible: true,
+      // showDragHandle: true,
+      useRootNavigator: true,
+      barrierColor: Colors.white.withOpacity(0.1),
+      backgroundColor: const Color(0xff2e3859),
+      builder: (context) {
+        return SizedBox(
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  _pickImageFromGallery();
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff2684fc),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Choose from gallery',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 16,
+                            color: Color(0xfffcfcfc),
+                            fontFamily: 'Quicksand',
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  _pickImageFromCamera();
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff2684fc),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Take a photo',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 16,
+                            color: Color(0xfffcfcfc),
+                            fontFamily: 'Quicksand',
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState(){
     super.initState();
 
-    _pickImageFromGallery();
+    // _pickImageFromGallery();
+    _showBottomSheet(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    // _pickImageFromGallery();
-
     return Scaffold(
       appBar: appBar(context),
       backgroundColor: const Color(0xff0a0c16),
@@ -89,6 +183,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
           InkWell(
             onTap: () {
               // _pickImageFromGallery();
+              _showBottomSheet(context);
             },
             child: Container(
               height: 40,
@@ -153,8 +248,3 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
     );
   }
 }
-
-/*
-extension on ImagePicker {
-  getImage({required ImageSource source}) {}
-}*/
