@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ScanDiseasePage extends StatefulWidget {
   const ScanDiseasePage({super.key});
@@ -15,16 +17,43 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
   File? _selectedImage;
   final picker = ImagePicker();
 
-  Future _pickImageFromGallery() async {
-    final pickedImage = await picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 50,
+  Future _cropImage(File imageFile) async {
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: imageFile.path,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: 'Cropper',
+          toolbarColor: Colors.deepOrange,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false
+        ),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+      ],
     );
 
-    setState(() {
+    if (croppedFile != null) {
+      setState(() {
+        _selectedImage = File(croppedFile.path);
+      });
+    }
+  }
+
+  Future _pickImageFromGallery() async {
+    await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    ).then((pickedImage) {
       if (pickedImage != null) {
         _selectedImage = File(pickedImage.path);
-        // widget.imgUrl = null;
+        // if (Platform.isAndroid || Platform.isIOS) {
+        //   _cropImage(File(pickedImage.path));
+        // } else {
+        //   _selectedImage = File(pickedImage.path);
+        // }
       } else {
         print('No image selected.');
       }
@@ -32,14 +61,16 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
   }
 
   Future _pickImageFromCamera() async {
-    final pickedImage = await picker.pickImage(
+    await picker.pickImage(
       source: ImageSource.camera,
       imageQuality: 50,
-    );
-
-    setState(() {
+    ).then((pickedImage) {
       if (pickedImage != null) {
-        _selectedImage = File(pickedImage.path);
+        if (Platform.isAndroid || Platform.isIOS) {
+          _cropImage(File(pickedImage.path));
+        } else {
+          _selectedImage = File(pickedImage.path);
+        }
       } else {
         print('No image selected.');
       }
@@ -50,71 +81,74 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
     return showModalBottomSheet(
       context: context,
       isDismissible: true,
-      // showDragHandle: true,
+      showDragHandle: true,
       useRootNavigator: true,
-      barrierColor: Colors.white.withOpacity(0.05),
-      backgroundColor: const Color(0xff2e3859),
-      builder: (context) {
+      // barrierColor: Colors.white.withOpacity(0.05),
+      // backgroundColor: const Color(0xff2e3859),
+      builder: (builder) {
         return Container(
-          padding: const EdgeInsets.only(left: 30, right: 30),
-          height: 200,
-          child: Column(
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+          height: 150,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  _pickImageFromGallery();
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2684fc),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Row(
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    _pickImageFromGallery();
+                    Navigator.pop(context);
+                  },
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Icon(
+                        Icons.image,
+                        color: Colors.white,
+                        size: 50,
+                      ),
                       Text(
-                        'Choose from gallery',
+                        'Gallery',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 16,
-                            color: Color(0xfffcfcfc),
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.w600),
+                          decoration: TextDecoration.none,
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontFamily: 'Quicksand',
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  _pickImageFromCamera();
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2684fc),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Row(
+              const SizedBox(width: 20),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    _pickImageFromCamera();
+                    Navigator.pop(context);
+                  },
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Icon(
+                        Icons.camera,
+                        color: Colors.white,
+                        size: 50,
+                      ),
                       Text(
-                        'Take a photo',
+                        'Camera',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 16,
-                            color: Color(0xfffcfcfc),
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.w600),
+                          decoration: TextDecoration.none,
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontFamily: 'Quicksand',
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
@@ -125,6 +159,20 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
         );
       },
     );
+  }
+
+  Future _checkForPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+      Permission.camera,
+    ].request();
+
+    if (statuses[Permission.storage]!.isGranted && statuses[Permission.camera]!.isGranted) {
+      _pickImageFromCamera();
+    } else {
+      print('No Permission Granted');
+      await Permission.camera.request();
+    }
   }
 
   @override

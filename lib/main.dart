@@ -10,9 +10,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: const WelcomePage(),
+      theme: ThemeData(
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: const Color(0xff2e3859),
+          dragHandleColor: Colors.white,
+          dragHandleSize: const Size(60, 4),
+          modalBarrierColor: Colors.white.withOpacity(0.05),
+        ),
+      ),
       // home: BottomNavBar(),
     );
   }
