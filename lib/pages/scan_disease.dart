@@ -52,10 +52,11 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       isDismissible: true,
       // showDragHandle: true,
       useRootNavigator: true,
-      barrierColor: Colors.white.withOpacity(0.1),
+      barrierColor: Colors.white.withOpacity(0.05),
       backgroundColor: const Color(0xff2e3859),
       builder: (context) {
-        return SizedBox(
+        return Container(
+          padding: const EdgeInsets.only(left: 30, right: 30),
           height: 200,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -130,7 +131,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
   void initState(){
     super.initState();
 
-    // _pickImageFromGallery();
+    _pickImageFromGallery();
     _showBottomSheet(context);
   }
 
@@ -151,31 +152,37 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 490,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: _selectedImage != null
-                ? const Color(0xff2e2e2e)
-                : const Color(0xff2e3859),
-              /*border: Border.all(
-                color: Colors.white,
-                width: 2,
-              ),*/
-            ),
-            child: _selectedImage != null
-                ? Image.file(
-                    _selectedImage!.absolute,
-                    fit: BoxFit.contain,
-                  )
-                : const Center(
-                    child: Icon(
-                      Icons.add_photo_alternate_outlined,
-                      size: 60,
-                      color: Colors.white,
+          InkWell(
+            onTap: () {
+              // _pickImageFromGallery();
+              _showBottomSheet(context);
+            },
+            child: Container(
+              height: 490,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: _selectedImage != null
+                  ? const Color(0xff2e2e2e)
+                  : const Color(0xff2e3859),
+                /*border: Border.all(
+                  color: Colors.white,
+                  width: 2,
+                ),*/
+              ),
+              child: _selectedImage != null
+                  ? Image.file(
+                      _selectedImage!.absolute,
+                      fit: BoxFit.contain,
+                    )
+                  : const Center(
+                      child: Icon(
+                        Icons.add_photo_alternate_outlined,
+                        size: 60,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+            ),
           ),
           Container(
             height: 20,
@@ -183,7 +190,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
           InkWell(
             onTap: () {
               // _pickImageFromGallery();
-              _showBottomSheet(context);
+              // _showBottomSheet(context);
             },
             child: Container(
               height: 40,

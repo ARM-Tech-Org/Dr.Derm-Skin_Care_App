@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:dr_derm_frontend/components/bottom_nav.dart';
 import 'package:dr_derm_frontend/pages/scan_disease.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 
 
 class DiseaseClassifierPage extends StatefulWidget {
@@ -15,8 +12,6 @@ class DiseaseClassifierPage extends StatefulWidget {
 }
 
 class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
-  File ? _selectedImage;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +93,6 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
                   builder: (context) => const ScanDiseasePage(),
                 ),
               );
-              _pickImageFromGallery();
             },
             child: Container(
               height: 40,
@@ -176,18 +170,4 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
       ),
     );
   }
-
-  Future<void> _pickImageFromGallery() async {
-    var uploadedImage = await ImagePicker().getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (uploadedImage != null) {
-        _selectedImage = File(uploadedImage.path);
-      }
-    });
-  }
-}
-
-extension on ImagePicker {
-  getImage({required ImageSource source}) {}
 }
