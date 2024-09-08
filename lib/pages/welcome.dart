@@ -1,8 +1,53 @@
 import 'package:dr_derm_frontend/components/bottom_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  late final LocalAuthentication auth;
+  bool _supportState = false;
+
+  Future<void> _authenticate() async {
+    bool authenticated = false;
+    try {
+      authenticated = await auth.authenticate(
+        localizedReason: 'Scan your fingerprint to authenticate',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          biometricOnly: true,
+        ),
+      );
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    if (!mounted) return;
+    if (authenticated) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const BottomNavBar(),
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    auth = LocalAuthentication();
+    auth.isDeviceSupported().then((bool isSupported) {
+      setState(() {
+        _supportState = isSupported;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +93,17 @@ class WelcomePage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const BottomNavBar(),
-                ),
-              );
+              if (_supportState) {
+                _authenticate();
+              } else {
+                print('Biometric not supported');
+              }
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const BottomNavBar(),
+              //   ),
+              // );
             },
             child: Container(
               height: 40,

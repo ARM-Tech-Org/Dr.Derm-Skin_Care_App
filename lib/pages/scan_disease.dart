@@ -24,10 +24,13 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Cropper',
-          toolbarColor: Colors.deepOrange,
+          toolbarColor: const Color(0xff0a0c16),
           toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false
+          activeControlsWidgetColor: const Color(0xff2684fc),
+          backgroundColor: const Color(0xff2e3859),
+          statusBarColor: const Color(0xff0a0c16),
+          hideBottomControls: true,
+          lockAspectRatio: true,
         ),
         IOSUiSettings(
           title: 'Cropper',
@@ -48,12 +51,12 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       imageQuality: 50,
     ).then((pickedImage) {
       if (pickedImage != null) {
-        _selectedImage = File(pickedImage.path);
-        // if (Platform.isAndroid || Platform.isIOS) {
-        //   _cropImage(File(pickedImage.path));
-        // } else {
-        //   _selectedImage = File(pickedImage.path);
-        // }
+        // _selectedImage = File(pickedImage.path);
+        if (Platform.isAndroid || Platform.isIOS) {
+          _cropImage(File(pickedImage.path));
+        } else {
+          _selectedImage = File(pickedImage.path);
+        }
       } else {
         print('No image selected.');
       }
@@ -83,8 +86,6 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
       isDismissible: true,
       showDragHandle: true,
       useRootNavigator: true,
-      // barrierColor: Colors.white.withOpacity(0.05),
-      // backgroundColor: const Color(0xff2e3859),
       builder: (builder) {
         return Container(
           padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
@@ -168,19 +169,18 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
     ].request();
 
     if (statuses[Permission.storage]!.isGranted && statuses[Permission.camera]!.isGranted) {
-      _pickImageFromCamera();
+      print('Permission Granted');
     } else {
       print('No Permission Granted');
       await Permission.camera.request();
+      await Permission.storage.request();
     }
   }
 
   @override
   void initState(){
     super.initState();
-
-    _pickImageFromGallery();
-    _showBottomSheet(context);
+    _checkForPermission();
   }
 
   @override
@@ -202,7 +202,6 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
         children: [
           InkWell(
             onTap: () {
-              // _pickImageFromGallery();
               _showBottomSheet(context);
             },
             child: Container(
@@ -210,13 +209,10 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: _selectedImage != null
+                color: const Color(0xff2e3859)
+                /*_selectedImage != null
                   ? const Color(0xff2e2e2e)
-                  : const Color(0xff2e3859),
-                /*border: Border.all(
-                  color: Colors.white,
-                  width: 2,
-                ),*/
+                  : const Color(0xff2e3859),*/
               ),
               child: _selectedImage != null
                   ? Image.file(
@@ -237,8 +233,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
           ),
           InkWell(
             onTap: () {
-              // _pickImageFromGallery();
-              // _showBottomSheet(context);
+
             },
             child: Container(
               height: 40,

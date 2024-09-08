@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
       home: const WelcomePage(),
       theme: ThemeData(
         bottomSheetTheme: BottomSheetThemeData(
-          backgroundColor: const Color(0xff2e3859),
-          dragHandleColor: Colors.white,
-          dragHandleSize: const Size(60, 4),
-          modalBarrierColor: Colors.white.withOpacity(0.05),
+          backgroundColor: const Color(0xff2d3134),
+          dragHandleColor: const Color(0xff47484c),
+          dragHandleSize: const Size(40, 4),
+          modalBarrierColor: Colors.black.withOpacity(0.4),
         ),
       ),
       // home: BottomNavBar(),

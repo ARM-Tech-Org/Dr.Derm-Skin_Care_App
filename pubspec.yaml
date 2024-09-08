@@ -39,6 +39,7 @@ dependencies:
   image_picker: ^1.1.2
   image_cropper: ^8.0.2
   permission_handler: ^11.3.1
+  local_auth: ^2.3.0
   flutter_svg: ^2.0.10+1
   http: ^1.2.2
   path: ^1.9.0
