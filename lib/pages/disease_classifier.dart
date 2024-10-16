@@ -3,7 +3,6 @@ import 'package:dr_derm_frontend/pages/scan_disease.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 class DiseaseClassifierPage extends StatefulWidget {
   const DiseaseClassifierPage({super.key});
 
@@ -118,16 +117,6 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
               ),
             ),
           ),
-    /*Container(
-            height: 70,
-            // color: Colors.red,
-            child: Row(
-              children: [
-                _selectedImage != null ? const Text('data')/*Image.file(_selectedImage!)*/ : const Text('Please select an Image text')
-              ],
-            ),
-
-          ),*/
         ],
       ),
     );
@@ -151,10 +140,8 @@ class _DiseaseClassifierPageState extends State<DiseaseClassifierPage> {
       leading: InkWell(
         onTap: () {
           Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context)=> const BottomNavBar())
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const BottomNavBar()));
         },
         child: Container(
           margin: const EdgeInsets.only(left: 35),
