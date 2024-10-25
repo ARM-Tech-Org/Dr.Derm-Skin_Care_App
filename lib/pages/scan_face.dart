@@ -26,7 +26,7 @@ class _ScanFacePageState extends State<ScanFacePage> {
   Future _predictDisease(File imageFile) async {
     // const String apiUrl = 'https://api.example.com/upload';
     // const String apiUrl = 'http://localhost:8080/api/beautyface';
-    const String apiUrl = 'http://192.168.1.7:8080/api/beautyface';
+    const String apiUrl = 'http://192.168.198.25:8080/api/beautyface';
 
     // Prepare the request
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));

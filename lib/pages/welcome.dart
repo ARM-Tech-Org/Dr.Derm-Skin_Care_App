@@ -82,7 +82,7 @@ class _WelcomePageState extends State<WelcomePage> {
           const SizedBox(
             height: 195,
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.ore eu fugiat nulla pariatur. ',
+              "This app is intended for informational purposes only and is not a substitute for professional medical advice. Always consult with a qualified healthcare provider before making any changes to your skincare routine. The app\'s recommendations are based on AI algorithms and may not be suitable for everyone. Individual results may vary. The developer is not responsible for any adverse reactions or health issues that may arise from following the app\'s suggestions.",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 12,
@@ -116,7 +116,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Get Started',
+                    'Agree & Proceed',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         decoration: TextDecoration.none,

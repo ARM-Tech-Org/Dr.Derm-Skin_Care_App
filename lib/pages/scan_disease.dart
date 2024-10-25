@@ -22,7 +22,7 @@ class _ScanDiseasePageState extends State<ScanDiseasePage> {
   Future _predictDisease(File imageFile) async {
     // const String apiUrl = 'https://api.example.com/upload';
     // const String apiUrl = 'http://localhost:8080/api/predict';
-    const String apiUrl = 'http://192.168.1.7:8080/api/predict';
+    const String apiUrl = 'http://192.168.198.25:8080/api/predict';
 
     // Prepare the request
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
